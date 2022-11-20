@@ -1,0 +1,65 @@
+from calendar import c
+from re import T
+from tkinter import VERTICAL
+
+print("---Tabla de verdad---")
+print("1.- (p)")
+print("2.- (¬p)")
+valorp = 1##int(input("Ingresa p: "))
+
+if valorp == 1:
+    arreglop = [False,True]
+elif valorp == 2:
+    arreglop = [True,False]
+
+print("3.- (q)")
+print("4.- (¬q)")
+valorq = 3##int(input("Ingresa p: "))
+
+if valorq == 3:
+    arregloq = [False,True]
+elif valorq == 4:
+    arregloq = [True,False]
+
+print("5.- (r)")
+print("6.- (¬r)")
+valorR = 5##int(input("Ingresa p: "))
+
+if valorR == 5:
+    arreglor = [False,True]
+elif valorR == 6:
+    arreglor = [True,False]
+
+print("--Tipo de tabla--")
+print("1. ^ (Conjuncion)")
+print("2. v (Disyuncion)")
+print("3. → (Condicional)")
+print("4. ↔ (Bicondicional)")
+tip = 1##int(input("Ingresa el tipo: "))
+
+if tip == 1:
+        print (" p        q       r      p^q  ((p^q)^r)")
+elif tip == 2:
+        print (" p        q      pvq")
+elif tip == 3:
+        print (" p        q      p→q")
+elif tip == 4:
+        print (" p        q      p↔q")
+
+if tip == 1:
+    for arreglopp in arreglop:
+        for arregloqq in arregloq:
+            for arreglorr in arreglor:
+                print (arreglopp, arregloqq, arreglorr,arreglopp and arregloqq,((arreglopp and arregloqq)and arreglorr), sep = '\t')
+elif tip == 2:
+    for arreglopp in arreglop:
+        for arregloqq in arregloq:
+            print (arreglopp, arregloqq, arreglopp or arregloqq, sep = '\t')
+elif tip == 3:
+    for arreglopp in arreglop:
+        for arregloqq in arregloq:
+            print (arreglopp, arregloqq, arreglopp <= arregloqq, sep = '\t')
+elif tip == 4:
+    for arreglopp in arreglop:
+        for arregloqq in arregloq:
+            print (arreglopp, arregloqq, arreglopp == arregloqq, sep = '\t')
