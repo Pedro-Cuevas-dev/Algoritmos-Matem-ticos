@@ -1,0 +1,100 @@
+import numpy as np 
+import matplotlib.pyplot as plt
+import math
+#Declarar el diccionario de datos 
+matriz = np.array([[0, 5, -3],
+        [-4, 5, -1],
+        [-4,0, -1],
+        [-3, 0, 0],
+
+        [-3, 2, 4],
+        [0, 2, 4],
+        [-1, 3, 3],
+        [-3, 3, 2],     
+        
+        [-3, 4, 2],
+        [-1, 4, 2],
+        [-1, 3, 2],
+        [0, 2, 2]])
+#Codigo para la P normal
+reflexion = np.array([[1,0,0],
+        [0,1,0],
+        [0,0,1]])
+
+matriz_trans = np.dot(matriz, reflexion)
+
+X = matriz_trans[:,0]
+Y = matriz_trans[:,1]
+plt.figure(figsize = (8, 8))
+plt.axis('equal')
+plt.fill(X,Y)
+plt.title("Algebra")
+plt.show()
+#Codigo para la Invertida
+reflexion = np.array([[-1,0,0],
+        [0,1,0],
+        [0,0,1]])
+
+matriz_trans = np.dot(matriz, reflexion)
+
+X = matriz_trans[:,0]
+Y = matriz_trans[:,1]
+plt.figure(figsize = (8, 8))
+plt.axis('equal')
+plt.fill(X,Y)
+plt.title("Algebra")
+plt.show()
+
+#Codigo para la dilatación 
+
+reflexion = np.array([[2,0,0],
+        [0,2,0],
+        [0,0,1]])
+
+matriz_trans = np.dot(matriz, reflexion)
+
+X = matriz_trans[:,0]
+Y = matriz_trans[:,1]
+plt.figure(figsize = (8, 8))
+plt.axis('equal')
+plt.fill(X,Y)
+plt.title("Algebra")
+plt.show()
+
+
+
+#Codigo para la reduccion
+reflexion = np.array([[0.1,0,0],
+        [0,0.1,0],
+        [0,0,1]])
+
+matriz_trans = np.dot(matriz, reflexion)
+
+X = matriz_trans[:,0]
+Y = matriz_trans[:,1]
+plt.figure(figsize = (8, 8))
+plt.axis('equal')
+plt.fill(X,Y)
+plt.title("Algebra")
+plt.show()
+
+#Codigo para la rotacion
+a = math.sin(69)
+b = math.cos(45)
+reflexion = np.array([[b,-a,0],
+        [a,b,0],
+        [0,0,1]])
+
+matriz_trans = np.dot(matriz, reflexion)
+
+X = matriz_trans[:,0]
+Y = matriz_trans[:,1]
+plt.figure(figsize = (8, 8))
+plt.axis('equal')
+plt.fill(X,Y)
+plt.title("Algebra")
+plt.show()
+
+
+
+
