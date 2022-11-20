@@ -1,0 +1,61 @@
+import numpy as np  
+#Arreglo de las sumas y restas de matricez
+A = np.matrix([[5, 7, 2],[3, 0 ,1],[4, 3, -2]])
+B = np.matrix([[0, 1, 2],[5, 7 ,9],[1, 3, 4]])
+C = np.matrix([[5, 6, 8],[13, 100, 25],[4, 23, (4**3)]])
+D = np.matrix([[-5, 10, (2**0.5)],[-2, -8, -70],[0.25, 69, -12]]) 
+
+#Se imprime la suma de A + C
+print("Suma A+C")
+AC = sum(A,C)
+print(AC)
+
+#Se imprime la suma de A + D
+print("Suma A+D")
+AD = sum(A,D)
+print(AD)
+#Se imprime la suma, resta de A + B - C
+print("Suma y resta A+B-C")
+matabc = (A+B-C)
+print(matabc)
+
+#Se imprime la resta de D-C
+print("Resta D-C")
+ArC = (D-C)
+print(ArC)
+
+#Se imprime la resta de B-D
+print("Resta de B-D")
+BrD = (B-D)
+print(BrD)
+
+#Se imprime la resta de B-A y la suma de C-D
+print("B-A+C-D")
+ABCD = (B-A+C-D)
+print(ABCD)
+
+#Arreglo para las multiplicaciones de matricez
+
+AA = np.matrix([[5, 3, 1],[2, 0,3],[4, 2, 8]])
+BB = np.matrix([[5, 7, 2],[0, 1,3],[10,5, 9]])
+CC = np.matrix([[7, 8, 9],[90, 85, 17],[14, 5, 64]])
+
+#Multipliacion y resta de A x B -C
+print("Multiplicacion A*B-C")
+mulApB = np.matmul(AA,BB)
+ResApBmC = (mulApB-CC)
+print(ResApBmC)
+
+#Resta y multiplicacion de C-A x C 
+print("Multiplicacion C-A*C")
+mulApC = np.matmul(AA,CC)
+ResCpAmC = (CC-mulApC)
+print(ResCpAmC)
+
+#Multipliacion de A x B x C
+print("Multiplicacion A*B*C")
+mulApBpC = np.matmul(AA,BB)
+MulCxBxC = (mulApBpC*CC)
+print(MulCxBxC)
+
+
