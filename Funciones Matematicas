@@ -1,0 +1,42 @@
+"""
+@lgoritmo de Funciones 
+
+"""
+
+#Declarar función factorial
+def factorial(N):
+    F = 1
+    if N > 0:
+        while N > 0:
+            F = F*N
+            N = N-1
+        return F
+    else:
+        return F
+#Solicitar al usuario que agregue un numero para factorizar
+print(factorial(int(input('Agrega un número a factorizar: '))))
+#Solicitar los datos al usuario para que ingrese el valor de F, M
+F = int(input('Ingresa N: '))
+M = int(input('Ingresa M: '))
+#Declarar función para las permutaciones
+def permutacion(F,M):
+    A = factorial(F)
+    B = factorial(F-M)
+#Retornar el valor de A y B
+    return (A/B)
+ #Imprimir las permutaciones   
+print(permutacion (F,M))
+#Solicitar al usuario que agregue F, M y V
+F = int(input('Ingresa N: '))
+M = int(input('Ingresa M: '))
+V = M
+#Declarar función para las combinaciones
+def combinacion(F,M):
+#Declarar las variables de A, B y C
+    A = factorial(F)
+    B = factorial(V)
+    C = factorial(F-M)
+#Retornanr el valor de A entre la multiplicación de B por C
+    return(A/(B*C))
+#Imprimir las combianciones
+print(combinacion(F,M))   
