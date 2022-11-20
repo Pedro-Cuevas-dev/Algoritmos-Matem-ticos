@@ -1,0 +1,21 @@
+arreglo = []
+arreglo_impar = []
+arreglo_par = []
+
+
+ent = input('Ingresa un numero')
+
+while end == "si":
+
+    valor = int(input('Agrega valor arreglo'))
+    arreglo.append(valor)
+    end = input('Desea agregar otro valor?')
+
+mostar = input('Desea ver pares o impares?')
+
+for i  in arreglo:
+    if int((i)%2) == 0:
+
+        arreglo_par.append(i)
+    else:
+        arreglo_impar.append(i)
