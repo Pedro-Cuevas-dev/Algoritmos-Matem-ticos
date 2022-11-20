@@ -1,0 +1,31 @@
+#Declarar la lista de valores
+lista = [1,24, 12, 2, 15, 100, 18, 25, 30]
+
+#Declarar a buscar 
+
+valor = 15
+
+#Declarar una variable para romper el ciclo 
+
+encontrado = False
+
+
+#Declarar la posición de la lista a evaluar
+
+pos = 0
+
+#Empezar ciclo while 
+while pos<len(lista) and not encontrado:
+
+    #Evaluar el valor de la posicion con el valor asginado 
+    if lista[pos] == valor:
+        #Imprimirsi se encontró el elemento 
+        print('Encontrado en la posicion'+str(valor)+'en la posicion')
+#Cambar la variable econtrado a verdadero
+#Para romper el ciclo
+        econtrado = True
+
+else:
+    #Incrementar la posicion para evaluar el siguiente elemento 
+    
+    pos = pos + 1
