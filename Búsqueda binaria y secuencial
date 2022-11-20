@@ -1,0 +1,68 @@
+"""
+Busque@ Binaria y secuencial
+"""
+#Arreglo para guardar los datos ingresados por el usuario
+arreglo = []
+#Entrada de datos por el usuario
+solicitar = input('Agregar datos al arreglo: ')
+#While para verificar si el usuario quiere agregar mas datos
+while solicitar == 'si':
+
+    valor = input('valor +1')
+
+    arreglo.apppend(int(valor))
+#Print para verificar si el usuario quiere agregar mas valores
+    solicitar = input('¿Desea agregar mas valores? s/n')
+
+print(arreglo)
+buscar = input()
+#Def para hacer una busqueda binaria en el arreglo
+def binaria (arreglo, buscar):
+    primero = 0
+
+#Sorted para ordenar los datos
+    lista_ordenada = sorted(arreglo)
+
+    ultimo = len(lista_ordenada) -1
+    encontrado = False
+#While para ver si el primer es menor o igual al ultimo
+    while primero <= ultimo and not encontrado:
+        puntomedio = int((primero + ultimo )/2)
+
+        if puntomedio == int(buscar):
+            encontrado = True
+            return print('Encontrado')
+
+        else:
+            if int(buscar) < lista_ordenada [puntomedio]:
+
+                ultimo = puntomedio -1
+            else:
+                primero = puntomedio +1
+#Retornar con la impresion de los valores, encontrado el valor y la posicion en la que se encontro
+    return print('encontrado el valor' +str(buscar)+'en la posicion'+ str(puntomedio))
+
+#Def para la busqueda secuencial
+def secuencial(arreglo, buscar):
+    encontrado = False
+    pos = 0
+    while not encontrado:
+#If para la posicion
+        if arreglo[pos] == int(buscar):
+#Imprimir el lugar en el que se encontro
+            print('Encontrado en el lugar: ' + str(pos))
+            encontrado = True
+#Else para la posicion + uno 
+        else:
+            pos = pos +1
+#Retornar que el valor ha sido encontrado y su posicion 
+    return print('Encontrado el valor' + str(buscar) + 'en la posicion' + str(pos))
+binaria (arreglo, buscar)
+secuencial(arreglo, buscar)
+            
+
+
+
+
+
+
