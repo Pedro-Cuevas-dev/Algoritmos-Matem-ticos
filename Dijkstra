@@ -1,0 +1,93 @@
+import heapq  # Importamos el módulo heapq para utilizar una cola de prioridad
+import networkx as nx
+import matplotlib.pyplot as plt
+"""
+
+1. Se define una función llamada dijkstra que toma dos argumentos: grafo, que representa el grafo ponderado, y origen,
+ que indica el nodo de partida para calcular los caminos más cortos.
+"""
+def dijkstra(grafo, origen):
+
+    """
+    2. Se crea un diccionario llamado distancias para almacenar las distancias más cortas desde el nodo de origen 
+    hacia los demás nodos del grafo. Inicialmente, todas las distancias se establecen en infinito, excepto la
+    distancia al nodo de origen, que se establece en 0.
+    """
+    distancias = {nodo: float('inf') for nodo in grafo}  # Creamos un diccionario para almacenar las distancias más cortas, inicialmente infinitas para todos los nodos excepto el origen
+    distancias[origen] = 0  # La distancia al nodo de origen es 0
+    """
+    3. Se crea una cola de prioridad cola utilizando el módulo heapq para mantener los nodos a explorar. 
+    La cola de prioridad se inicializa con el primer elemento (0, origen), donde 0 es la distancia actual 
+    al nodo de origen.
+    """
+    cola = [(0, origen)]  # Creamos una cola de prioridad con el primer elemento (distancia, nodo), donde la distancia al nodo de origen es 0
+    """
+    4. Se inicia un bucle while que se ejecuta hasta que la cola de prioridad esté vacía.
+    """
+    while cola:
+        """
+        5. En cada iteración del bucle, se extrae el nodo con la distancia más corta de la cola de prioridad 
+        utilizando la función heappop de heapq. Esto asegura que siempre se explore primero el nodo con la
+        distancia mínima.
+        """
+        distancia_actual, nodo_actual = heapq.heappop(cola)  # Obtenemos el nodo con la distancia más corta de la cola de prioridad
+        """
+        6. Si la distancia actual es mayor que la distancia almacenada en distancias para el nodo actual, 
+        se ignora el nodo y se continúa con el siguiente. Esto es porque la distancia actual se obtuvo de un 
+        camino más largo y, por lo tanto, no es relevante para el cálculo de los caminos más cortos.
+        """
+        if distancia_actual > distancias[nodo_actual]:  # Si la distancia actual es mayor que la distancia almacenada en distancias, pasamos al siguiente nodo
+            continue
+        """
+        7. Para cada nodo vecino del nodo actual, se calcula una nueva distancia sumando la distancia actual y el 
+        peso de la arista que conecta ambos nodos.
+        """
+        for nodo_vecino, peso_arista in grafo[nodo_actual].items():  # Iteramos sobre los nodos vecinos del nodo actual
+            distancia = distancia_actual + peso_arista  # Calculamos la nueva distancia sumando la distancia actual y el peso de la arista
+            """
+            8. Si la nueva distancia es menor que la distancia almacenada en distancias para el nodo vecino, 
+            se actualiza la distancia almacenada y se agrega el nodo vecino a la cola de prioridad con la 
+            nueva distancia utilizando la función heappush de heapq. Esto garantiza que el nodo vecino se 
+            explore en futuras iteraciones con su nueva distancia actualizada
+            """  
+            if distancia < distancias[nodo_vecino]:  # Si la nueva distancia es menor que la distancia almacenada en distancias
+                distancias[nodo_vecino] = distancia  # Actualizamos la distancia almacenada
+                heapq.heappush(cola, (distancia, nodo_vecino))  # Agregamos el nodo vecino a la cola de prioridad con la nueva distancia
+    """
+    9. Una vez que se han explorado todos los nodos y se ha encontrado la distancia más corta desde el nodo de origen
+    hacia todos los demás nodos, se devuelve el diccionario distancias que contiene las distancias más cortas.
+    """
+    return distancias  # Devolvemos el diccionario con las distancias más cortas
+
+
+"""
+10. El ejemplo de uso del algoritmo de Dijkstra muestra un grafo de ejemplo y ejecuta la función dijkstra 
+con el nodo de origen 'A'. Luego, se imprime en pantalla cada nodo junto con su distancia más corta desde 
+el nodo de origen.
+"""
+# Ejemplo de uso del algoritmo de Dijkstra
+grafo = {
+    'A': {'B': 4, 'C': 2},
+    'B': {'A': 4, 'D': 5},
+    'C': {'A': 2, 'D': 8, 'E': 10},
+    'D': {'B': 5, 'C': 8, 'E': 2, 'F': 6},
+    'E': {'C': 10, 'D': 2, 'F': 9},
+    'F': {'D': 6, 'E': 9}
+}
+
+G = nx.Graph(grafo)
+distancias = dijkstra(grafo, 'A')
+ # Cabecera
+print("Distancias más cortas desde el nodo origen 'A':")
+# Bucle for que itera a través de los elementos del diccionario distancias. 
+# En cada iteración, se desempaqueta cada elemento del diccionario en dos variables: nodo y distancia.
+for nodo, distancia in distancias.items():
+    # Imprimir los datos de las distancias
+    print("Nodo:", nodo, "- Distancia:", distancia)
+
+# Dibujar el grafo
+pos = nx.spring_layout(G)  # Calcular la posición de los nodos para el dibujo
+nx.draw(G, pos, with_labels=True, node_color= 'red', node_size=500)  # Dibujar los nodos
+nx.draw_networkx_edge_labels(G, pos, edge_labels=nx.get_edge_attributes(G, 'weight'))  # Dibujar las etiquetas de las aristas
+plt.title('Grafo')
+plt.show()
