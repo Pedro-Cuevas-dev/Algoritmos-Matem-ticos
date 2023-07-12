@@ -1,0 +1,58 @@
+import math # Importamos el modulo math para utilizar la funcion de !factorial
+"""
+@ptc           Codigo para las sucesiones [1, 3, 5, 7, 9]
+"""
+# Creamos el diccionario con las formulas para cada una de las suesiones
+Sucesiones = {
+    'a': lambda n: 2 * n / (n ** 2 + 1),
+    'b': lambda n: (-1) ** (n - 1) / (5 * n),
+    'c': lambda n: 1 / math.factorial(n + 1),
+    'd': lambda n: 6 / math.prod(range(1, n)),
+    'e': lambda n: 2 if n == 1 else Sucesiones['e'](n - 1) / (1 + Sucesiones['e'](n - 1))
+}
+# Creamos un arreglo / diccionario con los numeros para las sucesiones 
+num_s = [1, 3, 5, 7, 9]
+# Iteramos sobre los elemntos del arreglo / diccionario
+
+print("Atividad 1: ")
+print()
+for Suce, funcn in Sucesiones.items():
+    # Para cada sucesion imprimimos su nombre 
+    print(f"Sucesion {Suce}: ")
+    # Iteramos los numeros de la lista num_s
+    for num in num_s:
+        # Evaluamos la funcion 
+        Termino = funcn(num)
+        # Imprimimos los terminos para cada numero
+        print(f"Termino {Suce}{num} = {Termino} ")
+
+    print() 
+
+
+# Aqui inicia la actividad 2:
+# Formulas para cada una de las sucesiones
+an1 = lambda n: -3 * (-2/3) ** (n-1)
+an2 = lambda n: 3 * n + 2
+an3 = lambda n: ((-1) ** (n+1)) * (n ** 2) / (n + 1)
+an4 = lambda n: [1, 0, -1, 0][n % 4] if n <= 7 else None
+
+print("Actividad 2: ")
+print()
+print("Ejercicio 1: ")
+# Iteracioens ccorrespondientes para cada una de las sucesiones 
+for n in range(1, 6):
+    print(an1(n), end=", ")
+   
+print("\n")
+print("Ejercicio 2: ") 
+for n in range(1, 6):
+    print(an2(n), end=", ")
+
+print("\n")
+print("Ejercicio 3: ")
+for n in range(1, 6):
+    print(an3(n), end=", ")
+print("\n")
+print("Ejercicio 4: ")
+for n in range(1, 9):
+    print(an4(n), end=", ")
