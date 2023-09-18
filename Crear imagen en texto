@@ -1,0 +1,40 @@
+from PIL import Image
+
+# Abre la imagen
+imagen = Image.open("Ruby.png")
+
+# Define el nuevo tamaño deseado
+nuevo_ancho = 100  # Cambia esto al ancho deseado en píxeles
+nuevo_alto = 50   # Cambia esto al alto deseado en píxeles
+
+# Aplica el cambio de tamaño
+imagen_redimensionada = imagen.resize((nuevo_ancho, nuevo_alto))
+
+# Guarda la imagen redimensionada
+imagen_redimensionada.save("imagen_redimensionada.png")
+
+# Define los caracteres que se utilizarán para representar los niveles de intensidad
+caracteres = "@%#*+=-:. "
+
+# Convierte la imagen redimensionada a escala de grises
+imagen_gris = imagen_redimensionada.convert("L")
+
+# Obtén los datos de píxeles de la imagen
+datos_pixeles = list(imagen_gris.getdata())
+
+# Convierte los niveles de intensidad en caracteres
+texto = ""
+for pixel in datos_pixeles:
+    indice_caracter = pixel * len(caracteres) // 256
+    texto += caracteres[indice_caracter]
+
+# Divide el texto en líneas para que se parezca a la imagen
+ancho_linea = nuevo_ancho
+texto_formateado = "\n".join([texto[i:i+ancho_linea] for i in range(0, len(texto), ancho_linea)])
+
+# Imprime el resultado
+print(texto_formateado)
+
+# Guarda el resultado en un archivo de texto
+with open("imagen_como_texto.txt", "w") as archivo:
+    archivo.write(texto_formateado)
