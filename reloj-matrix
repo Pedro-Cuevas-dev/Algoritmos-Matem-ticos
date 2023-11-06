@@ -1,0 +1,57 @@
+import pygame
+import time
+import random
+
+# Inicializar pygame
+pygame.init()
+
+# Configuración de la pantalla
+width, height = 300, 100
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Reloj Matrix")
+
+# Colores
+bg_color = (0, 0, 0)
+green_color = (0, 255, 0)
+
+# Configuración de la fuente y el reloj
+font = pygame.font.Font(None, 36)
+
+# Función para mostrar el reloj
+def show_time():
+    current_time = time.strftime("%H:%M:%S")
+    time_surface = font.render(current_time, True, green_color)
+    screen.blit(time_surface, (width // 2 - time_surface.get_width() // 2, height // 2 - time_surface.get_height() // 2))
+
+# Función para mostrar el efecto Matrix
+def matrix_rain():
+    matrix_code = '01'
+    code_positions = {}
+    for i in range(0, width, 20):
+        code_positions[i] = 0
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        screen.fill(bg_color)
+
+        for position in code_positions:
+            code = random.choice(matrix_code)
+            code_surface = font.render(code, True, green_color)
+            screen.blit(code_surface, (position, code_positions[position]))
+            code_positions[position] += 20
+            if code_positions[position] > height and random.randint(0, 10) > 9:
+                code_positions[position] = 0
+
+        show_time()
+
+        pygame.display.update()
+        pygame.time.delay(50)
+
+# Ejecutar la función Matrix en segundo plano
+import threading
+matrix_thread = threading.Thread(target=matrix_rain)
+matrix_thread.start()
